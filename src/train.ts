@@ -15,21 +15,21 @@ export const sanitizeText = (sample: string = ''): string => {
     sample = sample.split('\n').join(' ');
     sample = sample.split('\t').join(' ');
 
-    // All sentence terminators (!,.,?,...) should be treated as whitespace
+    // All sentence terminators (!,.,?,...,;) should be treated as whitespace
     // Here, we care about words and word boundaries, not sentence boundaries.
     // Put another way we want to see how often a letter might be the last letter of the word
     // This will essentially merge the count for "this letter at end of sentence" and "this letter at end of word" which serves the same effect.
-    sample = sample.replace(/[!?.]/g, ' ');
+    sample = sample.replace(/[!?.;]/g, ' ');
 
     // convert double spaces to single spaces
-    sample = sample.replace(/  +/g, ' ');
+    sample = sample.replace(/\s+/g, ' ');
 
     // normalize the text to take care of non-latin characters
     sample = convertToLatinEquivalent(sample);
 
     // regex pattern to eliminate noise from the sample
-    const pattern = /[0-9!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g;
-    sample = sample.replace(pattern, '');
+    // const pattern = /[0-9!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g;
+    // sample = sample.replace(pattern, '');
 
     return sample;
 };

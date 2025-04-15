@@ -3,7 +3,11 @@ import consola from 'consola';
 import { existsSync } from 'node:fs';
 import * as fs from 'node:fs/promises';
 import { resolve } from 'pathe';
-import { isValidModel, testGibberish } from '../..';
+import {
+    calculateThreshold,
+    getGibberishScore,
+    isValidModel
+} from '../..';
 import { MODELS } from '../../prebuild';
 import type { Model } from '../../types';
 
@@ -54,11 +58,13 @@ export default defineCommand({
             return;
         }
 
-        const result = testGibberish(text, model);
+        const score = getGibberishScore(text, model);
+        const threshold = calculateThreshold(model);
+        const result = score <= threshold;
         if (result) {
-            consola.warn('Text is Gibberish');
+            consola.warn(`Text is Gibberish ${score} / ${threshold}`);
         } else {
-            consola.info('Text is Valid');
+            consola.info(`Text is Valid ${score} / ${threshold}`);
         }
     },
 });
