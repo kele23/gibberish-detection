@@ -1,38 +1,38 @@
 {
-  "name": "gibberish-detective",
-  "version": "1.1.1",
-  "description": "Detects if a string appears to be gibberish, using markov-chaining",
-  "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
-  "scripts": {
-    "test": "mocha"
-  },
-  "author": "Alpha4615",
-  "license": "MIT",
-  "files": [
-    "data/model.json",
-    "index.js",
-    "LICENSE"
-  ],
-  "devDependencies": {
-    "chai": "^4.2.0",
-    "mocha": "^10.2.0"
-  },
-  "dependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Alpha4615/gibberish-detection.git"
-  },
-  "keywords": [
-    "gibberish",
-    "markov",
-    "language",
-    "phonetics"
-  ],
-  "bugs": {
-    "url": "https://github.com/Alpha4615/gibberish-detection/issues"
-  },
-  "homepage": "https://github.com/Alpha4615/gibberish-detection#readme"
+    "name": "@kele23/gibberish",
+    "version": "1.2.0",
+    "description": "Detects if a string appears to be gibberish, using markov-chaining",
+    "type": "module",
+    "scripts": {
+        "build": "unbuild",
+        "gibberish": "jiti ./src/cli/index.ts"
+    },
+    "exports": {
+        "./package.json": "./package.json",
+        ".": "./dist/index.mjs",
+        "./prebuild": "./dist/prebuild/index.mjs",
+        "./types": "./dist/types/index.d.mts"
+    },
+    "bin": {
+        "gibberish": "./dist/cli/index.mjs"
+    },
+    "author": "Michele Scala <scala233@gmail.com>",
+    "license": "MIT",
+    "files": [
+        "dist"
+    ],
+    "devDependencies": {
+        "@types/node": "^22.14.1",
+        "eslint": "^9.24.0",
+        "eslint-config-unjs": "^0.4.2",
+        "jiti": "^2.4.2",
+        "prettier": "^3.5.1",
+        "typescript": "^5.8.3"
+    },
+    "dependencies": {
+        "citty": "^0.1.6",
+        "consola": "^3.4.2",
+        "pathe": "^2.0.3",
+        "unbuild": "^3.5.0"
+    }
 }
